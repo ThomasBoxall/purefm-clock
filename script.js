@@ -1,21 +1,40 @@
 function main(){
-    console.log("WE HAVE JS!");
     setCurrentTime();
 }
 
-setInterval(function setCurrentTime(){
-    var clockElement = document.getElementById("current-time");
-    var timeNow = new Date()
-    var currentTime = timeNow.getHours() + ":" + timeNow.getMinutes() + ":" + timeNow.getSeconds();
-    //  console.log(currentTime)
-    clockElement.innerHTML = currentTime;
-    updateWordsTime()
-}, 1000);
+function setCurrentTime(){
+    var currentDateTime = new Date()
+    setNumericTime(currentDateTime);
+    setWrittenTime(currentDateTime);
+    setDate(currentDateTime);
+    tickClock();
+}
 
-function updateWordsTime(){
+function setNumericTime(currentDateTime){
+    const timeNowOptions = {
+        hour: "numeric",
+        minute: "numeric",
+        second: "numeric",
+    };
+    var timeToDisplay = currentDateTime.toLocaleString('en-GB', timeNowOptions);
+    document.getElementById("numeric-time").innerHTML = timeToDisplay;
+}
+
+function setDate(currentDateTime){
+    const dateOptions = {
+        weekday: "long",
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+    };
+    var dateToDisplay = currentDateTime.toLocaleString('en-GB', dateOptions);
+    document.getElementById("date").innerHTML = dateToDisplay;
+}
+
+
+function setWrittenTime(currentDateTime){
     var pToSet = document.getElementById("words-time");
-    var currentTime = new Date();
-    var timeToPrint = getMinute(currentTime) + " " + getHour(currentTime);
+    var timeToPrint = getMinute(currentDateTime) + " " + getHour(currentDateTime);
     
     pToSet.innerHTML = timeToPrint;
 }
@@ -76,7 +95,14 @@ function getHour(currentTime){
         default:
             break;
     }
-    return hour;
+    // code below handles when the time is on the hour as we need it to output [hour] + o'clock rather than just [hour] as there won't be a minute pre-fix on it.
+    var mins = currentTime.getMinutes();
+    var endingString = " ";
+    if (mins === 0){
+        // we need to return hour + " o'clock"
+        endingString = "o'clock";
+    }
+    return hour.concat(" ", endingString);
 }
 
 function getMinute(currentTime){
@@ -322,9 +348,10 @@ function getMinute(currentTime){
             break;
         case 59:
             mins = "one";
-            ending = 4;
+            ending = 6;
             break;
         case 0:
+            // we don't want to add a minute on here as the time should read "[hour] o'clock"
             mins = "";
             ending = 0;
             break;
@@ -337,6 +364,7 @@ function getMinute(currentTime){
     switch(ending){
         case 0:
             endingText = " ";
+            break;
         case 1:
             endingText = "minute past";
             break;
@@ -352,9 +380,37 @@ function getMinute(currentTime){
         case 5:
             endingText = "to";
             break;
+        case 6:
+            endingText = "minute to";
+            break;
+        default:
+            endingText = "undefined";
+            break;
     }
     var retString = mins.concat(" ", endingText);
     return retString;
 }
 
+function tickClock() {
+    var secondHand = document.getElementById('second-hand');
+    var minsHand = document.getElementById('min-hand');
+    var hourHand = document.getElementById('hour-hand');
+
+    const now = new Date();
+
+    const seconds = now.getSeconds();
+    const secondsDegrees = ((seconds / 60) * 360) + 90;
+    secondHand.style.transform = "rotate(" + secondsDegrees + "deg)";
+
+    const mins = now.getMinutes();
+    const minsDegrees = ((mins / 60) * 360) + ((seconds/60)*6) + 90;
+    minsHand.style.transform = "rotate(" + minsDegrees + "deg)";
+
+    const hour = now.getHours();
+    const hourDegrees = ((hour / 12) * 360) + ((mins/60)*30) + 90;
+    hourHand.style.transform = "rotate(" + hourDegrees + "deg)";
+}
+
+
+setInterval(setCurrentTime, 1000);
 main()

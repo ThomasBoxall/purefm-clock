@@ -8,9 +8,31 @@
     <title>PureFM Clock</title>
     <script src="script.js"></script>
 </head>
-<body>
-    <p id="current-time">Time</p>
-    <p id="words-time">Words Time</p>
-    
+<body onload="main()">
+    <div class="header">
+        <img src="assets/pure-logo.png" alt-text="PureFM Logo" class="logo-img">
+    </div>
+    <div class="clock">
+        <div class="outer-clock-face">
+            <div class="marking marking-one"></div>
+            <div class="marking marking-two"></div>
+            <div class="marking marking-three"></div>
+            <div class="marking marking-four"></div>
+            <div class="inner-clock-face">
+                <div class="hand hour-hand" id="hour-hand"></div>
+                <div class="hand min-hand" id="min-hand"></div>
+                <div class="hand second-hand" id=second-hand></div>
+            </div>
+        </div>
+    </div>
+    <div class="words">
+        <p id="numeric-time" class="big bottom-gap">Time</p>
+        <p id="words-time" class="big large-bottom-gap">Words Time</p>
+        <p id="date" class="medium bottom-gap">Date</p>
+    </div>
+    <div class="footer">
+        <p>PureFM Studio Clock | Open Source on Github</p>
+        <p>v1.0 2022-11-26</p>
+    </div>
 </body>
 </html>
