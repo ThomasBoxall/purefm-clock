@@ -8,8 +8,9 @@ html{
 
 }
 body{
-    width: 80%;
-    margin: auto;
+  margin-top: 3em;
+  width: 80%;
+  margin: auto;
 }
 
 .logo-img{
@@ -55,6 +56,21 @@ body{
     text-align: right;
 }
 
+.left{
+  float: left;
+  width: 70%;
+  margin: 0;
+}
+.right{
+  float: right;
+  width: 30%;
+  margin: 0;
+}
+.container, iframe{
+  height: 70vh;
+}
+
+
 /* CLOCK */
 /* Adapted from https://dev.to/code_mystery/simple-analog-clock-using-html-css-javascript-2c6a */
 .clock {
@@ -65,7 +81,7 @@ body{
     margin-right: auto;
     position: relative;
     padding: 2rem;
-    top: 15%;   
+    /* top: 15%;    */
   }
   
   .outer-clock-face {
@@ -74,8 +90,6 @@ body{
     height: 100%;
     border-radius: 100%;
     background: var(--backColor);
-    
-   
     overflow: hidden;
   }
   
@@ -186,3 +200,33 @@ body{
     width: 45%;
     height: 2px;
   }
+
+
+/* MAKE PAGE RESPONSIVE */
+@media screen and (max-width:1300px){
+  body{
+      width:100%;
+      margin-left: 0;
+      margin-right: 0;
+  }
+  
+}
+@media screen and (max-width:700px){
+  body{
+      width:100%;
+      margin-left: 0;
+      margin-right: 0;
+  }
+  .left{
+    width: 100%;
+  }
+  .right{
+    float: left;
+    width: 100%
+  }
+  .container{
+    height: auto;
+    width: 100%;
+  }
+  
+}
