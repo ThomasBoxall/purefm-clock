@@ -70,6 +70,14 @@ body{
   height: 70vh;
 }
 
+.center{
+  margin: 1em auto;
+}
+
+#calFrame{
+  width: 100%;  
+  border-width:0;
+}
 
 /* CLOCK */
 /* Adapted from https://dev.to/code_mystery/simple-analog-clock-using-html-css-javascript-2c6a */
