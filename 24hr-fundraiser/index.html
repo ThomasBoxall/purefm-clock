@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="extraStyle.css">
+    <title>PureFM Clock</title>
+    <script src="../script.js"></script>
+</head>
+<body onload="setCurrentTime()">
+    <div class="header">
+        <img src="../assets/pure-logo.png" alt-text="PureFM Logo" class="logo-img">
+    </div>
+    <div class="left container">
+        <div class="clock">
+            <div class="outer-clock-face">
+                <div class="marking marking-one"></div>
+                <div class="marking marking-two"></div>
+                <div class="marking marking-three"></div>
+                <div class="marking marking-four"></div>
+                <div class="inner-clock-face">
+                    <div class="hand hour-hand" id="hour-hand"></div>
+                    <div class="hand min-hand" id="min-hand"></div>
+                    <div class="hand second-hand" id=second-hand></div>
+                </div>
+            </div>
+        </div>
+        <div class="words">
+            <p id="numeric-time" class="big bottom-gap">Time</p>
+            <p id="words-time" class="big large-bottom-gap">Words Time</p>
+            <p id="date" class="medium bottom-gap">Date</p>
+        </div>
+    </div>
+    <div class="right">
+        <!-- Code in this has come from JustGiving Widget Generator.
+        Widget generated to include fundraising progress bar, amount raised, and fundraising target only -->
+        <div id="jg-widget-roundtheclockradiochallenge-701"></div><script>(function(){var id="jg-widget-roundtheclockradiochallenge-701",doc=document,pfx=(window.location.toString().indexOf("https")==0)?"https":"http";var el=doc.getElementById(id);if(el){var js=doc.createElement('script');js.src=pfx+"://widgets.justgiving.com/fundraisingpage/roundtheclockradiochallenge?enc=ZT1qZy13aWRnZXQtcm91bmR0aGVjbG9ja3JhZGlvY2hhbGxlbmdlLTcwMSZ3PTQwMCZiPWlubmVyJmliPXByb2dyZXNzLHJhaXNlZCx0YXJnZXQ%3D";el.parentNode.insertBefore(js, el);}})();</script>
+    </div>
+    <div class="footer">
+        <p>PureFM Studio Clock | Open Source on Github</p>
+        <p>24 hour Round The Clock Challenge Special Edition</p>
+        <p>v0.9 2022-12-11</p>
+    </div>
+
+</body>
+</html>
