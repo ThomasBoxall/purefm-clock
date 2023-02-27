@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="extra-style.css">
     <title>PureFM Clock</title>
     <script src="../script.js"></script>
 </head>
@@ -33,16 +34,58 @@
         </div>
     </div>
     <div class="right">
-        <!-- Code in this has come from JustGiving Widget Generator.
-        Widget generated to include fundraising progress bar, amount raised, and fundraising target only -->
-        <!-- <div id="jg-widget-roundtheclockradiochallenge-701"></div><script>(function(){var id="jg-widget-roundtheclockradiochallenge-701",doc=document,pfx=(window.location.toString().indexOf("https")==0)?"https":"http";var el=doc.getElementById(id);if(el){var js=doc.createElement('script');js.src=pfx+"://widgets.justgiving.com/fundraisingpage/roundtheclockradiochallenge?enc=ZT1qZy13aWRnZXQtcm91bmR0aGVjbG9ja3JhZGlvY2hhbGxlbmdlLTcwMSZ3PTQwMCZiPWlubmVyJmliPXByb2dyZXNzLHJhaXNlZCx0YXJnZXQ%3D";el.parentNode.insertBefore(js, el);}})();</script> -->
-        <div id="jg-crowdfunding-pledge-box" data-config="id=roundtheclockradiochallenge,layout=large"></div><script>(function (d) {var jg = d.createElement('script');jg.type = 'text/javascript';jg.async = true;jg.src = (d.location.protocol == 'https:' ? 'https://widgets.justgiving.com/crowdfunding-pledge-box/host.js' :'http://widgets.justgiving.com/crowdfunding-pledge-box/host.js');var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(jg, s);})(document);</script>
+        <div class="container-box">
+            <p class="medium">Time remaining</p>
+            <p id="countdown-timer" class="words medium script"></p>
+        </div>
+        <div class="container-box">
+            <p class="medium">Fundraising Target</p>
+            <p class="words medium script">£6,000</p>
+        </div>
+        <div class="container-box">
+            <p class="medium">Amount Raised <span class="small italic">(approx)</span></p>
+            <p class="words medium script">£0</p>
+        </div>
     </div>
     <div class="footer">
         <p>PureFM Studio Clock | Open Source on Github</p>
         <p>24 hour Round The Clock Challenge Special Edition</p>
-        <p>v0.9 2022-12-11</p>
+        <p>v1 2023-02-27</p>
     </div>
+
+    <script>
+        // this makes the countdown timer do timer things.
+        // at this point, this is the best that its gonna be.
+        // I think this came from a W3schools tutorial many years ago, modified slightly to be better JS. 
+
+        // Set the date we're counting down to
+        let countDownDate = new Date("Mar 5, 2023 12:00:00").getTime();
+
+        // Update the count down every 1 second
+        let x = setInterval(function() {
+
+            // Get today's date and time
+            let now = new Date().getTime();
+
+            // Find the distance between now and the count down date
+            let distance = countDownDate - now;
+
+            // Time calculations for days, hours, minutes and seconds
+            let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Display the result in the element with id="demo"
+            document.getElementById("countdown-timer").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+            // If the count down is finished, write some text
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("demo").innerHTML = "00d 00h 00m 00s";
+            }
+        }, 1000);
+    </script>
 
 </body>
 </html>
